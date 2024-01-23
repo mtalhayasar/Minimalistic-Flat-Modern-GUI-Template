@@ -40,8 +40,8 @@ GLOBAL_STATE = 0 #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NO
 GLOBAL_TITLE_BAR = True #NECESSERY FOR CHECKING WEATHER THE WINDWO IS FULL SCREEN OR NOT
 init = False # NECRESSERY FOR INITITTION OF THE WINDOW.
 
-# tab_Buttons = ['bn_home', 'bn_bug', 'bn_android', 'bn_cloud'] #BUTTONS IN MAIN TAB  
-# android_buttons = ['bn_android_contact', 'bn_android_game', 'bn_android_clean', 'bn_android_world'] #BUTTONS IN ANDROID STACKPAGE
+# tab_Buttons = ['bn_dosyabilgileri', 'bn_taraflar', 'bn_oturumlar', 'bn_kasa'] #BUTTONS IN MAIN TAB  
+# android_buttons = ['bn_oturumlar_contact', 'bn_oturumlar_game', 'bn_oturumlar_clean', 'bn_oturumlar_world'] #BUTTONS IN ANDROID STACKPAGE
 
 # THIS CLASS HOUSES ALL FUNCTION NECESSERY FOR OUR PROGRAMME TO RUN.
 class UIFunction(MainWindow):
@@ -52,7 +52,7 @@ class UIFunction(MainWindow):
         global init
         if init==False:
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
-            self.ui.lab_tab.setText("Home")
+            self.ui.lab_tab.setText("Dosya Bilgileri")
             self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)")
             init = True
     ################################################################################################
@@ -102,7 +102,7 @@ class UIFunction(MainWindow):
     #ASLO IT SETS THE ABOUT>HOME AS THE FIRST PAGE.
     #IF THE PAGE IS IN THE ABOUT PAGE THEN PRESSING AGAIN WILL RESULT IN UNDOING THE PROCESS AND COMMING BACK TO THE 
     #HOME PAGE.
-    def toodleMenu(self, maxWidth, clicked):
+    def genisletMenu(self, maxWidth, clicked):
 
         #------> THIS LINE CLEARS THE BG OF PREVIOUS TABS : I.E. MAKING THEN NORMAL COLOR THAN LIGHTER COLOR.
         for each in self.ui.frame_bottom_west.findChildren(QFrame): 
@@ -177,7 +177,7 @@ class UIFunction(MainWindow):
         for each in self.ui.frame_bottom_west.findChildren(QFrame):
             each.setStyleSheet("background:rgb(51,51,51)")
 
-        if buttonName=='bn_home':
+        if buttonName=='bn_dosyabilgileri':
             if self.ui.frame_bottom_west.width()==80  and index!=0:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
                 self.ui.lab_tab.setText("Home")
@@ -188,7 +188,7 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("About > Home")
                 self.ui.frame_home.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
-        elif buttonName=='bn_bug':
+        elif buttonName=='bn_taraflar':
             if self.ui.frame_bottom_west.width()==80 and index!=5:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_bug)
                 self.ui.lab_tab.setText("Bug")
@@ -199,7 +199,7 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("About > Bug")
                 self.ui.frame_bug.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
-        elif buttonName=='bn_android':
+        elif buttonName=='bn_oturumlar':
             if self.ui.frame_bottom_west.width()==80  and index!=7:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_android)
                 self.ui.lab_tab.setText("Android")
@@ -211,7 +211,7 @@ class UIFunction(MainWindow):
                 self.ui.lab_tab.setText("About > Android")
                 self.ui.frame_android.setStyleSheet("background:rgb(91,90,90)") # SETS THE BACKGROUND OF THE CLICKED BUTTON TO LITER COLOR THAN THE REST
 
-        elif buttonName=='bn_cloud':
+        elif buttonName=='bn_kasa':
             if self.ui.frame_bottom_west.width()==80 and index!=6:
                 self.ui.stackedWidget.setCurrentWidget(self.ui.page_cloud)
                 self.ui.lab_tab.setText("Cloud")
@@ -231,44 +231,35 @@ class UIFunction(MainWindow):
     # WHAT EVER WIDGET IS IN THE STACKED PAGES ITS ACTION IS EVALUATED HERE AND THEN THE REST FUNCTION IS PASSED.
     def stackPage(self):
 
-        ######### PAGE_HOME ############# BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_HOME
+        #Dosya Bilgileri Sekmesini Açar
         self.ui.lab_home_main_hed.setText("Profile")
         self.ui.lab_home_stat_hed.setText("Stat")
 
-        ######### PAGE_BUG ############## BELOW DISPLAYS THE FUNCTION OF WIDGET, LABEL, PROGRESS BAR, E.T.C IN STACKEDWIDGET page_bug
-        self.ui.bn_bug_start.clicked.connect(lambda: APFunction.addNumbers(self, self.ui.comboBox_bug.currentText(), True))  
+        #Taraflar Sekmesindeki butonların işlevini atar
+        self.ui.bn_taraflar_start.clicked.connect(lambda: APFunction.addNumbers(self, self.ui.comboBox_bug.currentText(), True))  
 
-        # THIS CALLS A SIMPLE FUNCTION LOOPS THROW THE NUMBER FORWARDED BY THE COMBOBOX 'comboBox_bug' AND DISPLAY IN PROGRESS BAR
-        #ALONGWITH MOVING THE PROGRESS CHUNK FROM 0 TO 100%
+        #Kasa sekmesindeki butonların işlevini atar
+        self.ui.bn_kasa_connect.clicked.connect(lambda: APFunction.cloudConnect(self))
+        self.ui.bn_kasa_clear.clicked.connect(lambda: APFunction.cloudClear(self))
 
-        #########PAGE CLOUD #############
-        self.ui.bn_cloud_connect.clicked.connect(lambda: APFunction.cloudConnect(self))
-        #self.ui.bn_cloud_clear.clicked.connect(lambda: self.dialogexec("Warning", "Do you want to save the file", "icons/1x/errorAsset 55.png", "Cancel", "Save"))
-        self.ui.bn_cloud_clear.clicked.connect(lambda: APFunction.cloudClear(self))
+        #Oturumlar sekmesindeki butonların işlevini atar
+        self.ui.bn_oturumlar_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))
+        self.ui.bn_oturumlar_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
+        self.ui.bn_oturumlar_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
+        self.ui.bn_oturumlar_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
 
-        #########PAGE ANDROID WIDGET AND ITS STACKANDROID WIDGET PAGES
-        self.ui.bn_android_contact.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_contact"))
-        self.ui.bn_android_game.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_game"))
-        self.ui.bn_android_clean.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_clean"))
-        self.ui.bn_android_world.clicked.connect(lambda: UIFunction.androidStackPages(self, "page_world"))
-        
-        ######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>>
-        self.ui.bn_android_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
-
-        self.ui.bn_android_contact_edit.clicked.connect(lambda: APFunction.editable(self))
-
-        self.ui.bn_android_contact_save.clicked.connect(lambda: APFunction.saveContact(self))
-
+        #######ANDROID > PAGE CONTACT >>>>>>>>>>>>>>>>>>>
+        self.ui.bn_oturumlar_contact_delete.clicked.connect(lambda: self.dialogexec("Warning", "The Contact Infromtion will be Deleted, Do you want to continue.", "icons/1x/errorAsset 55.png", "Cancel", "Yes"))
+        self.ui.bn_oturumlar_contact_edit.clicked.connect(lambda: APFunction.editable(self))
+        self.ui.bn_oturumlar_contact_save.clicked.connect(lambda: APFunction.saveContact(self))
         #######ANDROID > PAGE GAMEPAD >>>>>>>>>>>>>>>>>>>
         self.ui.textEdit_gamepad.setVerticalScrollBar(self.ui.vsb_gamepad)   # SETTING THE TEXT FILED AREA A SCROLL BAR
         self.ui.textEdit_gamepad.setText("Type Here Something, or paste something here")
-
         ######ANDROID > PAGE CLEAN >>>>>>>>>>>>>>>>>>>>>>
         #NOTHING HERE
         self.ui.horizontalSlider_2.valueChanged.connect(lambda: print("Slider: Horizondal: ", self.ui.horizontalSlider_2.value())) #CHECK WEATHER THE SLIDER IS MOVED OR NOT
         self.ui.checkBox.stateChanged.connect(lambda: self.errorexec("Happy to Know you liked the UI", "icons/1x/smile2Asset 1.png", "Ok")) #WHEN THE CHECK BOX IS CHECKED IT ECECUTES THE ERROR BOX WITH MESSAGE.
         self.ui.checkBox_2.stateChanged.connect(lambda: self.errorexec("Even More Happy to hear this", "icons/1x/smileAsset 1.png", "Ok"))
-
         ##########PAGE: ABOUT HOME #############
         self.ui.text_about_home.setVerticalScrollBar(self.ui.vsb_about_home)
         self.ui.text_about_home.setText(aboutHome)
@@ -326,7 +317,7 @@ class APFunction():
 
     #---> FUNCTION TO CONNECT THE CLOUD USING ADRESS AND RETURN A ERROR STATEMENT
     def cloudConnect(self):
-        self.ui.bn_cloud_clear.setEnabled(False)
+        self.ui.bn_kasa_clear.setEnabled(False)
         textID = self.ui.line_cloud_id.text()
         textADRESS = self.ui.line_cloud_adress.text()
         if textID=='asd' and textADRESS=='1234':
@@ -349,10 +340,10 @@ class APFunction():
         self.ui.line_android_email.setEnabled(True)
         self.ui.line_android_ph.setEnabled(True)
 
-        self.ui.bn_android_contact_save.setEnabled(True)
-        self.ui.bn_android_contact_edit.setEnabled(False)
-        self.ui.bn_android_contact_share.setEnabled(False)
-        self.ui.bn_android_contact_delete.setEnabled(False)
+        self.ui.bn_oturumlar_contact_save.setEnabled(True)
+        self.ui.bn_oturumlar_contact_edit.setEnabled(False)
+        self.ui.bn_oturumlar_contact_share.setEnabled(False)
+        self.ui.bn_oturumlar_contact_delete.setEnabled(False)
 
 #-----> FUNCTION TO SAVE THE MODOFOED TEXT FIELD
     def saveContact(self):
@@ -362,8 +353,8 @@ class APFunction():
         self.ui.line_android_email.setEnabled(False)
         self.ui.line_android_ph.setEnabled(False)
 
-        self.ui.bn_android_contact_save.setEnabled(False)
-        self.ui.bn_android_contact_edit.setEnabled(True)
-        self.ui.bn_android_contact_share.setEnabled(True)
-        self.ui.bn_android_contact_delete.setEnabled(True)
+        self.ui.bn_oturumlar_contact_save.setEnabled(False)
+        self.ui.bn_oturumlar_contact_edit.setEnabled(True)
+        self.ui.bn_oturumlar_contact_share.setEnabled(True)
+        self.ui.bn_oturumlar_contact_delete.setEnabled(True)
 ###############################################################################################################################################################

@@ -684,7 +684,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="bn_home">
+              <widget class="QPushButton" name="bn_dosyabilgileri">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -770,7 +770,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="bn_bug">
+              <widget class="QPushButton" name="bn_taraflar">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -856,7 +856,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="bn_cloud">
+              <widget class="QPushButton" name="bn_kasa">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -942,7 +942,7 @@ QPushButton:pressed {
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="bn_android">
+              <widget class="QPushButton" name="bn_oturumlar">
                <property name="minimumSize">
                 <size>
                  <width>80</width>
@@ -1755,7 +1755,7 @@ QComboBox::drop-down {
                      </widget>
                     </item>
                     <item row="3" column="9">
-                     <widget class="QPushButton" name="bn_bug_start">
+                     <widget class="QPushButton" name="bn_taraflar_start">
                       <property name="minimumSize">
                        <size>
                         <width>69</width>
@@ -2201,7 +2201,7 @@ QLineEdit:disabled {
                      </spacer>
                     </item>
                     <item row="3" column="2">
-                     <widget class="QPushButton" name="bn_cloud_clear">
+                     <widget class="QPushButton" name="bn_kasa_clear">
                       <property name="enabled">
                        <bool>true</bool>
                       </property>
@@ -2251,7 +2251,7 @@ QPushButton:disabled {
                      </widget>
                     </item>
                     <item row="3" column="3">
-                     <widget class="QPushButton" name="bn_cloud_connect">
+                     <widget class="QPushButton" name="bn_kasa_connect">
                       <property name="minimumSize">
                        <size>
                         <width>69</width>
@@ -2411,7 +2411,7 @@ QPushButton:disabled {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="bn_android_contact">
+                        <widget class="QPushButton" name="bn_oturumlar_contact">
                          <property name="minimumSize">
                           <size>
                            <width>80</width>
@@ -2497,7 +2497,7 @@ QPushButton:pressed {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="bn_android_game">
+                        <widget class="QPushButton" name="bn_oturumlar_game">
                          <property name="minimumSize">
                           <size>
                            <width>80</width>
@@ -2583,7 +2583,7 @@ QPushButton:pressed {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="bn_android_clean">
+                        <widget class="QPushButton" name="bn_oturumlar_clean">
                          <property name="minimumSize">
                           <size>
                            <width>80</width>
@@ -2663,7 +2663,7 @@ QPushButton:pressed {
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="bn_android_world">
+                        <widget class="QPushButton" name="bn_oturumlar_world">
                          <property name="minimumSize">
                           <size>
                            <width>80</width>
@@ -3217,7 +3217,7 @@ QLineEdit:disabled {
                                <number>0</number>
                               </property>
                               <item>
-                               <widget class="QPushButton" name="bn_android_contact_edit">
+                               <widget class="QPushButton" name="bn_oturumlar_contact_edit">
                                 <property name="minimumSize">
                                  <size>
                                   <width>69</width>
@@ -3264,7 +3264,7 @@ QPushButton:disabled {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="bn_android_contact_share">
+                               <widget class="QPushButton" name="bn_oturumlar_contact_share">
                                 <property name="minimumSize">
                                  <size>
                                   <width>69</width>
@@ -3311,7 +3311,7 @@ QPushButton:disabled {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="bn_android_contact_delete">
+                               <widget class="QPushButton" name="bn_oturumlar_contact_delete">
                                 <property name="minimumSize">
                                  <size>
                                   <width>69</width>
@@ -3358,7 +3358,7 @@ QPushButton:disabled {
                                </widget>
                               </item>
                               <item>
-                               <widget class="QPushButton" name="bn_android_contact_save">
+                               <widget class="QPushButton" name="bn_oturumlar_contact_save">
                                 <property name="enabled">
                                  <bool>false</bool>
                                 </property>
